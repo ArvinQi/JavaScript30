@@ -1,0 +1,22 @@
+{
+  "name": "javascript30",
+  "version": "1.0.0",
+  "description": "studying javascript",
+  "main": "''",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArvinQi/JavaScript30.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Arvin Qi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArvinQi/JavaScript30/issues"
+  },
+  "homepage": "https://github.com/ArvinQi/JavaScript30#readme"
+}
