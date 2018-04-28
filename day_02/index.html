@@ -2,20 +2,76 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
-  <title>JS + CSS Clock</title>
+    <meta charset="UTF-8">
+    <title>JS + CSS Clock</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <div class="clock">
-    <div class="clock-face">
-      <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
-      <div class="hand second-hand"></div>
-    </div>
-  </div>
-  <script src="index.js"></script>
+<body onload="draw();">
+    <canvas id="clock" width="500" height="500">
+        <img id="bg" src="./clock-face.png" alt="bg">
+    </canvas>
+    <script>
+        function draw() {
+            var canvas = document.getElementById('clock'); // clear canvas
+            var vh = canvas.clientHeight;
+            var vw = canvas.clientWidth;
+            var radius = vh / 2;
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.clearRect(0,0,vh,vh);
+
+                ctx.save();
+                ctx.drawImage(document.getElementById('bg'), 0, 0, vw, vh);
+                ctx.restore();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.strokeStyle = "#fff";
+                ctx.lineWidth = 2;
+                ctx.arc(radius, radius, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.restore();
+
+
+                var now = new Date();
+                var sec = now.getSeconds();
+                var min = now.getMinutes();
+                var hr  = now.getHours();
+                var sRadians = (sec/60*360 + 180)/360 * Math.PI * 2;
+                var mRadians = (min/60*360 + 270)/360 * Math.PI * 2;
+                var hRadians = (hr/12*360 + 270)/360 * Math.PI * 2;
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = "#004aa9";
+                ctx.arc(radius + (radius - 20) * Math.cos(sRadians), radius + (radius - 20) * Math.sin(sRadians), 10, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 6;
+                ctx.strokeStyle = "#004aa9";
+                ctx.moveTo(radius, radius);
+                ctx.lineTo(radius + (radius - 80) * Math.cos(mRadians), radius + (radius - 80) * Math.sin(mRadians));
+                ctx.stroke();
+                ctx.restore();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#004aa9";
+                ctx.moveTo(radius, radius);
+                ctx.lineTo(radius + (radius - 120) * Math.cos(hRadians), radius + (radius - 120) * Math.sin(hRadians));
+                ctx.stroke();
+                ctx.restore();
+
+                window.requestAnimationFrame(draw);
+            }
+        }
+    </script>
 </body>
 
 </html>

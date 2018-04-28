@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/ArvinQi/JavaScript30/issues"
   },
-  "homepage": "https://github.com/ArvinQi/JavaScript30#readme"
+  "homepage": "https://github.com/ArvinQi/JavaScript30#readme",
+  "dependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint-plugin-flowtype": "^2.46.3"
+  }
 }
